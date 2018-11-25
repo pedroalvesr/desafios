@@ -19,9 +19,6 @@ public class FormatarString {
       manipulacaoString(texto, limite);
       texoJustificado(texto, limite);
 
-      //textoString(texto, limite);
-      // a(texto, limite);
-
    }
 
    public static void manipulacaoString(String texto, int limiteCaracteres) {
@@ -32,10 +29,10 @@ public class FormatarString {
       sc = new Scanner(texto);
       String novoTexto = null;
       int indiceAtual = 0;
-      
+
       while (sc.hasNext()) {
          novoTexto = sc.nextLine();
-         
+
          if (novoTexto.length() == 0)
             break;
 
@@ -57,40 +54,12 @@ public class FormatarString {
       System.out.println("----------------------------");
    }
 
-   public static void textoString(String texto, int limiteCaracteres) {
-      
-      sc = new Scanner(texto);
-      String novoTexto = null;
-      int indiceAtual = 0;
-      
-      while (sc.hasNext()) {
-         novoTexto = sc.nextLine();
-         
-         if (novoTexto.length() == 0)
-            break;
-
-         for (String t : novoTexto.split(" ")) {
-            char[] arrayPalavras = t.toCharArray();
-
-            indiceAtual += arrayPalavras.length;
-
-            if (indiceAtual > limiteCaracteres) {
-               System.out.println();
-               indiceAtual = arrayPalavras.length;
-            }
-            indiceAtual += 1;
-            System.out.print(t + " ");
-
-         }
-      }
-   }
-
    public static void texoJustificado(String texto, int limiteCaracteres) {
 
       System.out.println();
       System.out.println("DESAFIO MANIPULAÇÃO DE STRING - INTERMEDIÁRIO");
       System.out.println();
-      
+
       sc = new Scanner(texto);
 
       while (sc.hasNext()) {
