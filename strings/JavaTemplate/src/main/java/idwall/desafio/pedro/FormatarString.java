@@ -1,8 +1,5 @@
 package idwall.desafio.pedro;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,52 +12,86 @@ public class FormatarString {
 
    static String texto = "O dia depois do Thanksgiving, Dia de Ação de Graças, conhecido como Black Friday tem esse nome pois marcava a época em que lojistas conseguiam lucrar, após um grande período de recessão. Reza a lenda que depois de operar o ano todo no vermelho, as lojas finalmente conseguiram operar na faixa “preta”, com a grande onda de compras dos americanos que aproveitavam o feriado prolongado para adiantar os presentes de Natal.";
    static int limite = 40;
-   
+   private static Scanner sc;
+
    public static void main(String[] args) {
 
       manipulacaoString(texto, limite);
       texoJustificado(texto, limite);
 
+      //textoString(texto, limite);
+      // a(texto, limite);
+
    }
 
    public static void manipulacaoString(String texto, int limiteCaracteres) {
-      
+
       System.out.println("DESAFIO MANIPULAÇÃO DE STRING - BÁSICO");
-      System.out.println("\n");
-      
-      String textoNovo = "";
-      String[] linhas = texto.split(" ");
+      System.out.println();
+
+      sc = new Scanner(texto);
+      String novoTexto = null;
       int indiceAtual = 0;
-      int totalCaracteres = 0;
-      int linhaAtual = 0;
+      
+      while (sc.hasNext()) {
+         novoTexto = sc.nextLine();
+         
+         if (novoTexto.length() == 0)
+            break;
 
-      while (indiceAtual < linhas.length) {
-         int arrayPalavras = linhas[indiceAtual].length() + 1;
+         for (String t : novoTexto.split(" ")) {
+            char[] arrayPalavras = t.toCharArray();
 
-         if (totalCaracteres + arrayPalavras <= limiteCaracteres) {
-            textoNovo = textoNovo + linhas[indiceAtual];
-            textoNovo = textoNovo + " ";
-            totalCaracteres = textoNovo.length() - (limiteCaracteres * linhaAtual - 1);
-            indiceAtual++;
-         } else {
-            textoNovo = textoNovo + System.getProperty("line.separator");
-            linhaAtual++;
-            totalCaracteres = 0;
+            indiceAtual += arrayPalavras.length;
+
+            if (indiceAtual > limiteCaracteres) {
+               System.out.println();
+               indiceAtual = arrayPalavras.length;
+            }
+            indiceAtual += 1;
+            System.out.print(t + " ");
+
          }
       }
-      System.out.println(textoNovo);
       System.out.println("\n");
       System.out.println("----------------------------");
    }
 
-   @SuppressWarnings("resource")
+   public static void textoString(String texto, int limiteCaracteres) {
+      
+      sc = new Scanner(texto);
+      String novoTexto = null;
+      int indiceAtual = 0;
+      
+      while (sc.hasNext()) {
+         novoTexto = sc.nextLine();
+         
+         if (novoTexto.length() == 0)
+            break;
+
+         for (String t : novoTexto.split(" ")) {
+            char[] arrayPalavras = t.toCharArray();
+
+            indiceAtual += arrayPalavras.length;
+
+            if (indiceAtual > limiteCaracteres) {
+               System.out.println();
+               indiceAtual = arrayPalavras.length;
+            }
+            indiceAtual += 1;
+            System.out.print(t + " ");
+
+         }
+      }
+   }
+
    public static void texoJustificado(String texto, int limiteCaracteres) {
-      
-      System.out.println("\n");
+
+      System.out.println();
       System.out.println("DESAFIO MANIPULAÇÃO DE STRING - INTERMEDIÁRIO");
-      System.out.println("\n");
+      System.out.println();
       
-      Scanner sc = new Scanner(texto);
+      sc = new Scanner(texto);
 
       while (sc.hasNext()) {
          int qtdePalav = -1;
